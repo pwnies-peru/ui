@@ -46,12 +46,12 @@ export default function IntentionHeatmap() {
     xaxis: {
       categories: ["$0-100", "$100-300", "$300-500", "$500-1000", "$1000+"],
       labels: {
-        style: { colors: "#6B7280", fontFamily: "Inter" },
+        style: { colors: "#6B7280", fontFamily: "Inter, sans-serif" },
       },
     },
     yaxis: {
       labels: {
-        style: { colors: "#6B7280", fontFamily: "Inter" },
+        style: { colors: "#6B7280", fontFamily: "Inter, sans-serif" },
       },
     },
     colors: ["#B85C5C"],

@@ -43,11 +43,11 @@ export default function RevenueByAgent() {
       categories: ["Semana 1", "Semana 2", "Semana 3", "Semana 4"],
       axisBorder: { show: false },
       axisTicks: { show: false },
-      labels: { style: { colors: "#9CA3AF", fontFamily: "Inter" } },
+      labels: { style: { colors: "#9CA3AF", fontFamily: "Inter, sans-serif" } },
     },
     yaxis: {
       labels: {
-        style: { colors: "#9CA3AF", fontFamily: "Inter" },
+        style: { colors: "#9CA3AF", fontFamily: "Inter, sans-serif" },
         formatter: (val) => `$${(val / 1000).toFixed(0)}k`,
       },
     },

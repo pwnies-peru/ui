@@ -30,7 +30,7 @@ export default function CategoryInfluence() {
       style: {
         fontSize: "13px",
         fontWeight: 600,
-        fontFamily: "Inter",
+        fontFamily: "Inter, sans-serif",
         colors: ["#ffffff"],
       },
       offsetX: 0,
@@ -46,14 +46,14 @@ export default function CategoryInfluence() {
         "Otros",
       ],
       labels: {
-        style: { colors: "#9CA3AF", fontFamily: "Inter" },
+        style: { colors: "#9CA3AF", fontFamily: "Inter, sans-serif" },
         formatter: (val) => `${val}%`,
       },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
     yaxis: {
-      labels: { style: { colors: "#6B7280", fontSize: "13px", fontFamily: "Inter" } },
+      labels: { style: { colors: "#6B7280", fontSize: "13px", fontFamily: "Inter, sans-serif" } },
     },
     grid: {
       borderColor: "#E5E7EB",

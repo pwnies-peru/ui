@@ -20,13 +20,13 @@ export default function PeakHours() {
     colors: ["#B85C5C"],
     xaxis: {
       categories: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
-      labels: { style: { colors: "#6B7280", fontFamily: "Inter" } },
+      labels: { style: { colors: "#6B7280", fontFamily: "Inter, sans-serif" } },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
     yaxis: {
-      categories: ["6am", "9am", "12pm", "3pm", "6pm", "9pm", "12am"],
-      labels: { style: { colors: "#6B7280", fontFamily: "Inter" } },
+
+      labels: { style: { colors: "#6B7280", fontFamily: "Inter, sans-serif" } },
     },
     grid: { show: false },
     tooltip: {

@@ -31,18 +31,18 @@ export default function ConversionComparison() {
       position: "top",
       horizontalAlign: "right",
       labels: { colors: "#6B7280" },
-      markers: { radius: 4 },
-      fontFamily: "Inter",
+      markers: { size: 4 },
+      fontFamily: "Inter, sans-serif",
     },
     xaxis: {
       categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
       axisBorder: { show: false },
       axisTicks: { show: false },
-      labels: { style: { colors: "#9CA3AF", fontFamily: "Inter" } },
+      labels: { style: { colors: "#9CA3AF", fontFamily: "Inter, sans-serif" } },
     },
     yaxis: {
       labels: {
-        style: { colors: "#9CA3AF", fontFamily: "Inter" },
+        style: { colors: "#9CA3AF", fontFamily: "Inter, sans-serif" },
         formatter: (val) => `${val}%`,
       },
     },
