@@ -597,3 +597,4 @@ El proyecto está listo para ser usado como base para un dashboard administrativ
 **Versión del proyecto**: 2.0.2
 **Última actualización**: Marzo 2025
 
+
