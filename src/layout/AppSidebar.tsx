@@ -3,16 +3,37 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Palette, MessageSquare, Settings, TrendingUp, Zap } from "lucide-react";
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
 
-  const isActive = (path: string) => pathname === path || pathname.startsWith(path);
+  const isActive = (path: string) => pathname === path;
+  const isActiveSection = (path: string) => pathname.startsWith(path);
 
-  const menuItems = [
-    { name: "Dashboard", path: "/dashboard", icon: BarChart3 },
+  const menuSections = [
+    {
+      title: "ANALYTICS",
+      items: [
+        { name: "Overview", path: "/dashboard", icon: BarChart3 },
+        { name: "Rendimiento", path: "/dashboard/performance", icon: TrendingUp },
+      ]
+    },
+    {
+      title: "CONFIGURACIÓN",
+      items: [
+        { name: "Personalización", path: "/dashboard/customization", icon: Palette },
+        { name: "Comportamiento", path: "/dashboard/behavior", icon: Zap },
+        { name: "Mensajes", path: "/dashboard/messages", icon: MessageSquare },
+      ]
+    },
+    {
+      title: "SISTEMA",
+      items: [
+        { name: "Ajustes", path: "/dashboard/settings", icon: Settings },
+      ]
+    }
   ];
 
   return (
@@ -51,35 +72,35 @@ const AppSidebar: React.FC = () => {
       {/* Navigation */}
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar flex-1">
         <nav className="mb-6">
-          {/* Main Menu */}
-          <div className="mb-6">
-            {(isExpanded || isHovered || isMobileOpen) && (
-              <h2 className="mb-4 text-xs uppercase text-gray-500 font-inter font-medium tracking-wide">
-                NAVEGACIÓN
-              </h2>
-            )}
-            <ul className="flex flex-col gap-2">
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.path}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-inter ${
-                      isActive(item.path)
-                        ? "bg-[#E8DD6C] text-black font-medium shadow-sm"
-                        : "text-gray-600 hover:bg-gray-100 hover:text-black"
-                    } ${!isExpanded && !isHovered ? "lg:justify-center lg:px-3" : ""}`}
-                  >
-                    <item.icon size={22} />
-                    {(isExpanded || isHovered || isMobileOpen) && (
-                      <span className="font-medium">{item.name}</span>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {menuSections.map((section, sectionIndex) => (
+            <div key={section.title} className={sectionIndex > 0 ? "mt-6" : ""}>
+              {(isExpanded || isHovered || isMobileOpen) && (
+                <h2 className="mb-3 text-xs uppercase text-gray-400 font-inter font-medium tracking-wide px-4">
+                  {section.title}
+                </h2>
+              )}
+              <ul className="flex flex-col gap-1">
+                {section.items.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.path}
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all font-inter text-sm ${
+                        isActive(item.path)
+                          ? "bg-[#E8DD6C] text-black font-medium shadow-sm"
+                          : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                      } ${!isExpanded && !isHovered ? "lg:justify-center lg:px-3" : ""}`}
+                    >
+                      <item.icon size={20} />
+                      {(isExpanded || isHovered || isMobileOpen) && (
+                        <span>{item.name}</span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </nav>
-
       </div>
     </aside>
   );
