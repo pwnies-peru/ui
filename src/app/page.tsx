@@ -61,7 +61,7 @@ export default function Home() {
           {/* Logo - Serif */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <span className="text-3xl md:text-4xl font-playfair font-bold text-black">
-              NegocIA<span className="text-[#B85C5C]">!</span>
+              negocIA<span className="text-[#B85C5C]">!</span>
             </span>
           </Link>
 
@@ -297,7 +297,7 @@ export default function Home() {
                 </svg>
               ),
               title: 'Conversaciones que convierten',
-              desc: 'Más clientes significa más tiempo respondiendo mensajes. NegocIA lo hace por ti sin que pierdas el toque humano.'
+              desc: 'Más clientes significa más tiempo respondiendo mensajes. negocIA lo hace por ti sin que pierdas el toque humano.'
             },
             {
               icon: (
@@ -306,7 +306,7 @@ export default function Home() {
                 </svg>
               ),
               title: 'Los clientes compran al primero que responde',
-              desc: 'El 78% compra al que le responde más rápido. Con NegocIA, tú siempre eres el primero.'
+              desc: 'El 78% compra al que le responde más rápido. Con negocIA, tú siempre eres el primero.'
             },
             {
               icon: (
@@ -316,7 +316,7 @@ export default function Home() {
                 </svg>
               ),
               title: 'Configuración en 5 minutos',
-              desc: 'Sin complicaciones técnicas. Una línea de código y NegocIA ya está vendiendo por ti.'
+              desc: 'Sin complicaciones técnicas. Una línea de código y negocIA ya está vendiendo por ti.'
             }
           ].map((benefit, index) => (
             <motion.div
@@ -354,17 +354,17 @@ export default function Home() {
               {
                 step: '01',
                 title: 'Detecta intención de compra',
-                desc: 'NegocIA analiza el comportamiento del cliente: tiempo en página, productos que revisa, señales de duda. Aparece en el momento exacto.'
+                desc: 'negocIA analiza el comportamiento del cliente: tiempo en página, productos que revisa, señales de duda. Aparece en el momento exacto.'
               },
               {
                 step: '02',
                 title: 'Inicia la conversación',
-                desc: 'Con un tono cercano y humano, NegocIA pregunta qué necesita el cliente y propone soluciones personalizadas.'
+                desc: 'Con un tono cercano y humano, negocIA pregunta qué necesita el cliente y propone soluciones personalizadas.'
               },
               {
                 step: '03',
-                title: 'Negocia como un vendedor real',
-                desc: 'Si el cliente pide un descuento, NegocIA contraoferta respetando tu margen de ganancia. Genera códigos de descuento dinámicos al instante.'
+                title: 'negocIA como un vendedor real',
+                desc: 'Si el cliente pide un descuento, negocIA contraoferta respetando tu margen de ganancia. Genera códigos de descuento dinámicos al instante.'
               },
               {
                 step: '04',
@@ -430,19 +430,19 @@ export default function Home() {
             Lo que dicen nuestros clientes
           </h2>
           <p className="text-center text-gray-600 font-inter mb-16 max-w-2xl mx-auto">
-            Más de 1,200 negocios ya están vendiendo más con NegocIA
+            Más de 1,200 negocios ya están vendiendo más con negocIA
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                quote: "Antes perdíamos el 60% de clientes que pedían descuentos. Ahora NegocIA los convierte en ventas.",
+                quote: "Antes perdíamos el 60% de clientes que pedían descuentos. Ahora negocIA los convierte en ventas.",
                 author: "María González",
                 business: "Tienda de ropa online",
                 metric: "+38% en ventas"
               },
               {
-                quote: "No tengo que estar pegado al celular respondiendo mensajes. NegocIA lo hace mejor que yo.",
+                quote: "No tengo que estar pegado al celular respondiendo mensajes. negocIA lo hace mejor que yo.",
                 author: "Carlos Ramírez",
                 business: "Electrónica",
                 metric: "12 horas ahorradas/día"
@@ -510,7 +510,7 @@ export default function Home() {
           </div>
 
           <div className="bg-[#F5F5F0] border-2 border-[#E8DD6C] rounded-2xl p-8 text-center">
-            <p className="text-sm text-gray-600 font-inter mb-2">Con NegocIA recuperas el 43% →</p>
+            <p className="text-sm text-gray-600 font-inter mb-2">Con negocIA recuperas el 43% →</p>
             <p className="text-5xl md:text-6xl font-playfair font-black text-[#B85C5C] mb-2">$18,060</p>
             <p className="text-lg text-gray-700 font-inter font-medium">de ingresos adicionales al mes</p>
           </div>
@@ -527,7 +527,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-gray-700 mb-10 font-inter max-w-2xl mx-auto">
-            Explora el dashboard y descubre cómo NegocIA puede transformar tu ecommerce
+            Explora el dashboard y descubre cómo negocIA puede transformar tu ecommerce
           </p>
 
           <Link
@@ -547,10 +547,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <span className="text-2xl md:text-3xl font-playfair font-bold text-black">
-              NegocIA<span className="text-[#B85C5C]">!</span>
+              negocIA<span className="text-[#B85C5C]">!</span>
             </span>
             <p className="text-gray-600 text-sm font-inter">
-              © 2025 NegocIA. El regateo inteligente que cierra ventas.
+              © 2025 negocIA. El regateo inteligente que cierra ventas.
             </p>
           </div>
         </div>
