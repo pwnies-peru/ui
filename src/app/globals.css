@@ -5,6 +5,9 @@
 @theme {
   --font-*: initial;
   --font-outfit: Outfit, sans-serif;
+  --font-playfair: var(--font-playfair), 'Playfair Display', serif;
+  --font-inter: var(--font-inter), Inter, sans-serif;
+  --font-italiana: var(--font-italiana), Italiana, cursive;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -37,6 +40,16 @@
   --color-transparent: transparent;
   --color-white: #ffffff;
   --color-black: #101828;
+
+  /* NegocIA Brand Colors - Empresarial */
+  --color-negocia-bg: #FAF9F6;
+  --color-negocia-beige: #F5F5F0;
+  --color-negocia-yellow: #E8DD6C;
+  --color-negocia-yellow-dark: #D4C854;
+  --color-negocia-terracota: #B85C5C;
+  --color-negocia-terracota-light: #D47676;
+  --color-negocia-black: #000000;
+  --color-negocia-dark-bar: #1A1A1A;
 
   --color-brand-25: #f2f7ff;
   --color-brand-50: #ecf3ff;

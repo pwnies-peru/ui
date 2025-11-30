@@ -9,28 +9,29 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 export default function CategoryInfluence() {
   const options: ApexOptions = {
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "Inter, sans-serif",
       type: "bar",
-      height: 320,
+      height: 340,
       toolbar: { show: false },
       background: "transparent",
     },
     plotOptions: {
       bar: {
         horizontal: true,
-        borderRadius: 6,
-        barHeight: "60%",
+        borderRadius: 8,
+        barHeight: "65%",
         distributed: true,
       },
     },
-    colors: ["#fb923c", "#a855f7", "#3b82f6", "#22c55e", "#eab308", "#ef4444"],
+    colors: ["#B85C5C", "#6366F1", "#10B981", "#E8DD6C", "#F59E0B", "#EF4444"],
     dataLabels: {
       enabled: true,
       formatter: (val) => `${val}%`,
       style: {
-        fontSize: "12px",
+        fontSize: "13px",
         fontWeight: 600,
-        colors: ["#fff"],
+        fontFamily: "Inter",
+        colors: ["#ffffff"],
       },
       offsetX: 0,
     },
@@ -39,56 +40,52 @@ export default function CategoryInfluence() {
       categories: [
         "Electrónica",
         "Moda",
-        "Hogar",
+        "Hogar & Deco",
         "Deportes",
         "Belleza",
         "Otros",
       ],
       labels: {
-        style: { colors: "#9ca3af" },
+        style: { colors: "#9CA3AF", fontFamily: "Inter" },
         formatter: (val) => `${val}%`,
       },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
     yaxis: {
-      labels: { style: { colors: "#9ca3af", fontSize: "13px" } },
+      labels: { style: { colors: "#6B7280", fontSize: "13px", fontFamily: "Inter" } },
     },
     grid: {
-      borderColor: "rgba(255,255,255,0.1)",
+      borderColor: "#E5E7EB",
       strokeDashArray: 4,
       xaxis: { lines: { show: true } },
       yaxis: { lines: { show: false } },
     },
     tooltip: {
-      theme: "dark",
+      theme: "light",
       y: {
-        formatter: (val) => `${val}% de influencia en compra`,
+        formatter: (val) => `${val}% de conversión`,
       },
     },
   };
 
   const series = [
     {
-      name: "Influencia",
+      name: "Conversión",
       data: [78, 65, 52, 48, 41, 28],
     },
   ];
 
   return (
-    <div className="relative group h-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-orange-500/20 rounded-[2rem] blur-xl opacity-50" />
-      <div className="relative h-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl p-6">
-        <div className="absolute top-3 left-3 right-3 h-16 bg-gradient-to-b from-white/10 to-transparent rounded-t-[1.5rem]" />
-        <div className="relative">
-          <div className="mb-4">
-            <h3 className="text-lg font-bold text-white">Influencia por Categoría</h3>
-            <p className="text-gray-400 text-sm mt-1">% de compras donde el agente influenció la decisión</p>
-          </div>
-          <ReactApexChart options={options} series={series} type="bar" height={320} />
-        </div>
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all h-full">
+      <div className="mb-4">
+        <h3 className="text-2xl font-playfair font-bold text-black mb-1">
+          Categorías con más{' '}
+          <span className="font-italiana italic text-[#B85C5C]">Regateo</span>
+        </h3>
+        <p className="text-gray-600 text-sm font-inter">% de conversión donde el agente negoció activamente</p>
       </div>
+      <ReactApexChart options={options} series={series} type="bar" height={340} />
     </div>
   );
 }
-

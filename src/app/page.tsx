@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ArrowRight } from 'lucide-react';
@@ -6,326 +7,393 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-orange-500/20 via-orange-500/5 to-transparent rounded-full blur-3xl" />
+    <div className="min-h-screen bg-[#FAF9F6]">
+      {/* Top Black Bar - Anuncio */}
+      <div className="bg-[#1A1A1A] text-white py-3 px-6 text-center">
+        <p className="text-sm md:text-base">
+          ✨ <span className="font-medium">¿Vendes productos online?</span> Crea tu agente de ventas IA GRATIS aquí →
+        </p>
       </div>
 
-      {/* Navigation */}
-      <nav className="relative z-50 px-6 py-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/50">
-              <span className="text-white font-bold text-lg">N</span>
-            </div>
-            <span className="text-2xl font-bold text-white">Negocia</span>
+      {/* Navigation Header */}
+      <nav className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+          {/* Logo - Serif */}
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <span className="text-3xl md:text-4xl font-playfair font-bold text-black">
+              NegocIA<span className="text-[#B85C5C]">!</span>
+            </span>
           </Link>
 
-          <Link 
-            href="/dashboard" 
-            className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-5 py-2.5 rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/30 transition-all"
+          {/* Nav Links */}
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="#features" className="text-black hover:text-[#B85C5C] transition-colors font-inter">
+              Beneficios
+            </Link>
+            <Link href="#how-it-works" className="text-black hover:text-[#B85C5C] transition-colors font-inter">
+              Cómo funciona
+            </Link>
+            <Link href="/dashboard" className="text-black hover:text-[#B85C5C] transition-colors font-inter">
+              Dashboard
+            </Link>
+          </div>
+
+          {/* CTA Button */}
+          <Link
+            href="/dashboard"
+            className="bg-[#E8DD6C] text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full font-inter font-medium hover:bg-[#D4C854] transition-all inline-flex items-center gap-2 shadow-sm"
           >
             Ver Dashboard
+            <ArrowRight size={18} />
           </Link>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-0 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white"
-          >
-            Vende{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">
-              3X más
-            </span>
-            {' '}con IA.
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
-          >
-            El asistente de ventas que asesora, recomienda y cierra ventas en tu ecommerce. 
-            24/7, sin complicaciones.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center mb-16"
-          >
-            <Link 
-              href="/dashboard" 
-              className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all flex items-center gap-2"
-            >
-              Ver Dashboard
-              <ArrowRight size={20} />
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* Dashboard Preview - Mitad visible */}
+      <section className="max-w-5xl mx-auto px-6 md:px-12 pt-20 md:pt-32 pb-16 md:pb-24 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative max-w-6xl mx-auto"
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-5 py-2 mb-8 shadow-sm"
         >
-          {/* Glow behind dashboard */}
-          <div className="absolute -inset-4 bg-gradient-to-t from-transparent via-orange-500/20 to-orange-500/10 rounded-t-[2rem] blur-2xl" />
-          
-          {/* Dashboard Container - Clickeable */}
-          <Link href="/dashboard" className="block relative bg-gray-900/80 backdrop-blur-xl rounded-t-2xl border border-white/10 border-b-0 shadow-2xl overflow-hidden hover:border-orange-400/30 transition-all cursor-pointer">
-            {/* Browser Header */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-gray-800/50 border-b border-white/5">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="bg-gray-700/50 rounded-lg px-4 py-1 text-gray-400 text-sm">
-                  app.negocia.ai
-                </div>
-              </div>
-            </div>
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span className="text-sm font-inter font-medium text-gray-700">+1,247 vendedores usando NegocIA hoy</span>
+        </motion.div>
 
-            {/* Dashboard Content Preview */}
-            <div className="p-6 bg-gradient-to-br from-gray-900 to-gray-950">
-              {/* Top Metrics Row */}
-              <div className="grid grid-cols-4 gap-4 mb-6">
-                {[
-                  { label: 'Conversión', value: '12.4%', change: '+4.2%' },
-                  { label: 'Revenue', value: '$47,832', change: '+23.5%' },
-                  { label: 'Dudas Resueltas', value: '94.7%', change: '+2.1%' },
-                  { label: 'Usuarios', value: '3,847', change: '+18.3%' },
-                ].map((metric, i) => (
-                  <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
-                    <p className="text-gray-500 text-xs mb-1">{metric.label}</p>
-                    <p className="text-white font-bold text-xl">{metric.value}</p>
-                    <p className="text-green-400 text-xs">{metric.change}</p>
-                  </div>
-                ))}
-              </div>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-black mb-8 leading-tight"
+        >
+          Tus clientes prefieren comprar con atención humana,{' '}
+          <br className="hidden md:block" />
+          pero{' '}
+          <span className="font-italiana text-[#B85C5C] italic">
+            responderles toma demasiado tiempo
+          </span>{' '}
+          para crecer
+        </motion.h1>
 
-              {/* Charts Row */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* Left Chart */}
-                <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                  <p className="text-white font-medium mb-4">Conversión vs Sin Agente</p>
-                  <div className="flex items-end gap-2 h-32">
-                    {[40, 55, 45, 70, 60, 85, 75, 90].map((h, i) => (
-                      <div key={i} className="flex-1 flex flex-col gap-1">
-                        <div 
-                          className="bg-gradient-to-t from-orange-500 to-orange-400 rounded-t"
-                          style={{ height: `${h}%` }}
-                        />
-                        <div 
-                          className="bg-gray-700 rounded-t"
-                          style={{ height: `${h * 0.3}%` }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-12 font-inter leading-relaxed"
+        >
+          NegocIA negocia, asesora y cierra ventas por ti. Como un vendedor real, pero disponible 24/7 sin descanso.
+        </motion.p>
 
-                {/* Right Chart */}
-                <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                  <p className="text-white font-medium mb-4">Top Preguntas</p>
-                  <div className="space-y-3">
-                    {[
-                      { q: '¿Disponible en otro color?', pct: 24 },
-                      { q: '¿Cuánto tarda el envío?', pct: 20 },
-                      { q: '¿Tienen descuento?', pct: 16 },
-                    ].map((item, i) => (
-                      <div key={i}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-400 truncate">{item.q}</span>
-                          <span className="text-orange-400">{item.pct}%</span>
-                        </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full">
-                          <div 
-                            className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
-                            style={{ width: `${item.pct * 3}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
+        >
+          <Link
+            href="/dashboard"
+            className="bg-[#E8DD6C] text-black px-10 md:px-12 py-4 md:py-5 rounded-full font-inter font-semibold text-base md:text-lg hover:bg-[#D4C854] transition-all inline-flex items-center gap-3 shadow-md hover:shadow-lg"
+          >
+            Comenzar Gratis
+            <div className="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center">
+              <ArrowRight size={20} />
             </div>
           </Link>
+          <Link
+            href="/dashboard"
+            className="text-black border-2 border-gray-300 px-10 md:px-12 py-4 md:py-5 rounded-full font-inter font-semibold text-base md:text-lg hover:border-gray-400 transition-all inline-flex items-center gap-2"
+          >
+            Ver Demo
+          </Link>
+        </motion.div>
 
-          {/* Fade at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex items-center justify-center gap-6 text-sm text-gray-600 font-inter"
+        >
+          <span className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            Sin tarjeta de crédito
+          </span>
+          <span className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            Setup en 5 minutos
+          </span>
         </motion.div>
       </section>
 
-      {/* Impact Section */}
-      <section id="features" className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Impacto <span className="text-orange-400">Real</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              No es un chatbot genérico, es una IA que optimiza tu proceso comercial a diario
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: 'Asesoría Personalizada', desc: 'Como un vendedor en tienda física: recomienda productos, responde dudas y guía al cliente hasta el checkout' },
-              { title: 'Regateo Inteligente', desc: 'Ofrece descuentos estratégicos en el momento justo para cerrar la venta sin sacrificar margen' },
-              { title: 'Data como Activo', desc: 'Dashboard con KPIs en tiempo real: intenciones de compra, productos más consultados, objeciones comunes' }
-            ].map((feature, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-orange-400/30 transition-all h-full">
-                  <h3 className="text-xl font-bold mb-4 text-white">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.desc}</p>
-                </div>
+      {/* Benefits Section */}
+      <section id="features" className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          {[
+            {
+              icon: (
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ),
+              title: 'Conversaciones que convierten',
+              desc: 'Más clientes significa más tiempo respondiendo mensajes. NegocIA lo hace por ti sin que pierdas el toque humano.'
+            },
+            {
+              icon: (
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ),
+              title: 'Los clientes compran al primero que responde',
+              desc: 'El 78% compra al que le responde más rápido. Con NegocIA, tú siempre eres el primero.'
+            },
+            {
+              icon: (
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ),
+              title: 'Configuración en 5 minutos',
+              desc: 'Sin complicaciones técnicas. Una línea de código y NegocIA ya está vendiendo por ti.'
+            }
+          ].map((benefit, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center md:text-left"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center text-[#B85C5C] mb-6 mx-auto md:mx-0">
+                {benefit.icon}
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl md:text-2xl font-playfair font-bold text-black mb-4">
+                {benefit.title}
+              </h3>
+              <p className="text-gray-700 font-inter leading-relaxed">
+                {benefit.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-6 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            {[
-              { value: '+43%', label: 'Aumento en conversión' },
-              { value: '2.8X', label: 'Más ticket promedio' },
-              { value: '24/7', label: 'Atención continua' }
-            ].map((stat, index) => (
-              <div key={index}>
-                <p className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500 mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-gray-400">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-white">
-            El momento que más importa
+      {/* How it Works */}
+      <section id="how-it-works" className="bg-white py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-black text-center mb-16">
+            Cómo funciona el{' '}
+            <span className="font-italiana italic text-[#B85C5C]">regateo inteligente</span>
           </h2>
-          <p className="text-xl text-gray-400 text-center mb-20 max-w-3xl mx-auto">
-            Nos especializamos en el <span className="text-orange-400 font-bold">momento de decisión de compra</span> - 
-            cuando el cliente está explorando pero necesita ese empujón final
+
+          <div className="space-y-12">
+            {[
+              {
+                step: '01',
+                title: 'Detecta intención de compra',
+                desc: 'NegocIA analiza el comportamiento del cliente: tiempo en página, productos que revisa, señales de duda. Aparece en el momento exacto.'
+              },
+              {
+                step: '02',
+                title: 'Inicia la conversación',
+                desc: 'Con un tono cercano y humano, NegocIA pregunta qué necesita el cliente y propone soluciones personalizadas.'
+              },
+              {
+                step: '03',
+                title: 'Negocia como un vendedor real',
+                desc: 'Si el cliente pide un descuento, NegocIA contraoferta respetando tu margen de ganancia. Genera códigos de descuento dinámicos al instante.'
+              },
+              {
+                step: '04',
+                title: 'Cierra la venta',
+                desc: 'Guía al cliente hasta el checkout, resuelve dudas de envío, recomienda productos adicionales y asegura que complete la compra.'
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex gap-6 md:gap-8 items-start"
+              >
+                <div className="text-5xl md:text-6xl font-playfair font-bold text-[#E8DD6C] flex-shrink-0">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-playfair font-bold text-black mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-700 font-inter leading-relaxed text-lg">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+          {[
+            { value: '+43%', label: 'Conversión por regateo' },
+            { value: '87%', label: 'Tasa de cierre' },
+            { value: '24/7', label: 'Siempre disponible' }
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-5xl md:text-6xl font-playfair font-black text-[#B85C5C] mb-3">
+                {stat.value}
+              </div>
+              <div className="text-lg text-gray-700 font-inter">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Social Proof */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-black text-center mb-4">
+            Lo que dicen nuestros clientes
+          </h2>
+          <p className="text-center text-gray-600 font-inter mb-16 max-w-2xl mx-auto">
+            Más de 1,200 negocios ya están vendiendo más con NegocIA
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: 'Aumenta Carrito', desc: 'Cross-selling y upselling inteligente basado en la conversación', metric: '+$45 por orden' },
-              { title: 'Reduce Abandono', desc: 'Interviene justo cuando el cliente duda, ofreciendo incentivos personalizados', metric: '-32% abandono' },
-              { title: 'Genera Insights', desc: 'Cada conversación es data: qué buscan, qué les frena, qué productos combinan', metric: '15+ KPIs' }
-            ].map((solution, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-orange-400/30 transition-all h-full">
-                  <h3 className="text-xl font-bold mb-4 text-white">{solution.title}</h3>
-                  <p className="text-gray-400 mb-6">{solution.desc}</p>
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                    <p className="text-2xl font-black text-orange-400">{solution.metric}</p>
+              {
+                quote: "Antes perdíamos el 60% de clientes que pedían descuentos. Ahora NegocIA los convierte en ventas.",
+                author: "María González",
+                business: "Tienda de ropa online",
+                metric: "+38% en ventas"
+              },
+              {
+                quote: "No tengo que estar pegado al celular respondiendo mensajes. NegocIA lo hace mejor que yo.",
+                author: "Carlos Ramírez",
+                business: "Electrónica",
+                metric: "12 horas ahorradas/día"
+              },
+              {
+                quote: "El ROI fue inmediato. En la primera semana recuperamos 15 ventas que se hubieran perdido.",
+                author: "Ana Martínez",
+                business: "Productos naturales",
+                metric: "$12,400 recuperados"
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-50 border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-[#E8DD6C]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 font-inter mb-6 leading-relaxed">"{testimonial.quote}"</p>
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                  <div>
+                    <p className="font-playfair font-bold text-black">{testimonial.author}</p>
+                    <p className="text-sm text-gray-600 font-inter">{testimonial.business}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-playfair font-bold text-[#B85C5C]">{testimonial.metric}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Integration Section */}
-      <section className="py-32 px-6 relative">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Integración <span className="text-orange-400">Simple</span>
-            </h2>
-            <p className="text-xl text-gray-400">
-              Una sola línea de código. Compatible con Shopify, WooCommerce, Magento y custom stores.
-            </p>
+      {/* ROI Calculator */}
+      <section className="max-w-4xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="bg-white border-2 border-gray-200 rounded-3xl p-8 md:p-12 shadow-lg">
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-black text-center mb-4">
+            Calcula tu{' '}
+            <span className="font-italiana italic text-[#B85C5C]">retorno de inversión</span>
+          </h2>
+          <p className="text-center text-gray-600 font-inter mb-10">
+            Promedio basado en más de 1,200 tiendas activas
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <p className="text-sm text-gray-600 font-inter mb-2">Ventas perdidas al mes</p>
+              <p className="text-4xl font-playfair font-bold text-black mb-1">~120</p>
+              <p className="text-xs text-gray-500 font-inter">Clientes que abandonan sin comprar</p>
+            </div>
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <p className="text-sm text-gray-600 font-inter mb-2">Ticket promedio</p>
+              <p className="text-4xl font-playfair font-bold text-black mb-1">$350</p>
+              <p className="text-xs text-gray-500 font-inter">Valor promedio de compra</p>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-purple-500/20 rounded-2xl blur-xl opacity-50" />
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-3 h-3 bg-red-500 rounded-full" />
-                <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                <div className="w-3 h-3 bg-green-500 rounded-full" />
-                <span className="text-gray-400 text-sm ml-2">index.html</span>
-              </div>
-              <pre className="text-orange-400 font-mono text-sm overflow-x-auto">
-{`<script src="https://cdn.negocia.ai/widget.js"
-        data-store-id="tu-tienda-123">
-</script>
-
-<!-- ¡Eso es todo! Negocia ya está activo 🚀 -->`}
-              </pre>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">⚡ 5 min instalación</span>
-                <span className="bg-white/10 text-white px-3 py-1 rounded-full text-sm">🔒 GDPR Compliant</span>
-                <span className="bg-white/10 text-white px-3 py-1 rounded-full text-sm">📱 Mobile-first</span>
-              </div>
-            </div>
+          <div className="bg-[#F5F5F0] border-2 border-[#E8DD6C] rounded-2xl p-8 text-center">
+            <p className="text-sm text-gray-600 font-inter mb-2">Con NegocIA recuperas el 43% →</p>
+            <p className="text-5xl md:text-6xl font-playfair font-black text-[#B85C5C] mb-2">$18,060</p>
+            <p className="text-lg text-gray-700 font-inter font-medium">de ingresos adicionales al mes</p>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 px-6 relative">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            ¿Listo para vender más?
+      {/* CTA Final */}
+      <section className="bg-[#F5F5F0] py-20 md:py-32">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-black mb-6">
+            Vende más con{' '}
+            <span className="font-italiana italic text-[#B85C5C]">
+              conversaciones inteligentes
+            </span>
           </h2>
-          <p className="text-xl text-gray-400 mb-10">
-            Explora el dashboard y ve lo que Negocia puede hacer por tu ecommerce
+          <p className="text-lg md:text-xl text-gray-700 mb-10 font-inter max-w-2xl mx-auto">
+            Explora el dashboard y descubre cómo NegocIA puede transformar tu ecommerce
           </p>
 
-          <Link 
-            href="/dashboard" 
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-400 to-orange-500 text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-orange-500/30"
+          <Link
+            href="/dashboard"
+            className="bg-[#E8DD6C] text-black px-10 md:px-12 py-4 md:py-5 rounded-full font-inter font-semibold text-base md:text-lg hover:bg-[#D4C854] transition-all inline-flex items-center gap-3 shadow-md hover:shadow-lg"
           >
-            Ver Dashboard
-            <ArrowRight size={22} />
+            Ver Dashboard en acción
+            <div className="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center">
+              <ArrowRight size={20} />
+            </div>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
+      <footer className="bg-white border-t border-gray-200 py-12">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-sm">N</span>
-              </div>
-              <span className="text-lg font-bold text-white">Negocia</span>
-            </Link>
-            <p className="text-gray-600 text-sm">
-              © 2025 Negocia. Hecho con ❤️ en Latinoamérica
+            <span className="text-2xl md:text-3xl font-playfair font-bold text-black">
+              NegocIA<span className="text-[#B85C5C]">!</span>
+            </span>
+            <p className="text-gray-600 text-sm font-inter">
+              © 2025 NegocIA. El regateo inteligente que cierra ventas.
             </p>
           </div>
         </div>

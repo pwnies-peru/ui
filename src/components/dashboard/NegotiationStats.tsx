@@ -8,11 +8,11 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 export default function NegotiationStats() {
-  const series = [68];
+  const series = [87];
   const options: ApexOptions = {
-    colors: ["#fb923c"],
+    colors: ["#B85C5C"],
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "Inter, sans-serif",
       type: "radialBar",
       height: 280,
       sparkline: { enabled: true },
@@ -21,18 +21,19 @@ export default function NegotiationStats() {
       radialBar: {
         startAngle: -90,
         endAngle: 90,
-        hollow: { size: "75%" },
+        hollow: { size: "72%" },
         track: {
-          background: "rgba(255,255,255,0.1)",
+          background: "#F3F4F6",
           strokeWidth: "100%",
         },
         dataLabels: {
           name: { show: false },
           value: {
-            fontSize: "42px",
-            fontWeight: "800",
+            fontSize: "48px",
+            fontWeight: "700",
             offsetY: -20,
-            color: "#ffffff",
+            color: "#000000",
+            fontFamily: "Playfair Display, serif",
             formatter: (val) => `${val}%`,
           },
         },
@@ -41,9 +42,9 @@ export default function NegotiationStats() {
     fill: {
       type: "gradient",
       gradient: {
-        shade: "dark",
+        shade: "light",
         type: "horizontal",
-        gradientToColors: ["#f97316"],
+        gradientToColors: ["#D47676"],
         stops: [0, 100],
       },
     },
@@ -51,43 +52,46 @@ export default function NegotiationStats() {
   };
 
   const stats = [
-    { label: "Total Intentos", value: "847", icon: Percent, color: "text-blue-400" },
-    { label: "Aceptados", value: "576", icon: CheckCircle, color: "text-green-400" },
-    { label: "Rechazados", value: "271", icon: XCircle, color: "text-red-400" },
-    { label: "Ahorro Margen", value: "8.2%", icon: TrendingUp, color: "text-orange-400" },
+    { label: "Total Intentos", value: "1,247", icon: Percent, color: "#6366F1" },
+    { label: "Aceptados", value: "1,088", icon: CheckCircle, color: "#10B981" },
+    { label: "Rechazados", value: "159", icon: XCircle, color: "#EF4444" },
+    { label: "Ahorro Margen", value: "8.2%", icon: TrendingUp, color: "#E8DD6C" },
   ];
 
   return (
-    <div className="relative group h-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-red-500/20 rounded-[2rem] blur-xl opacity-50" />
-      <div className="relative h-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden">
-        <div className="absolute top-3 left-3 right-3 h-16 bg-gradient-to-b from-white/10 to-transparent rounded-t-[1.5rem]" />
-        <div className="relative p-6">
-          <div className="mb-4">
-            <h3 className="text-lg font-bold text-white">Regateo Inteligente</h3>
-            <p className="text-gray-400 text-sm mt-1">Tasa de éxito en negociaciones</p>
-          </div>
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all h-full">
+      <div className="mb-4">
+        <h3 className="text-2xl font-playfair font-bold text-black mb-1">
+          Tasa de{' '}
+          <span className="font-italiana italic text-[#B85C5C]">Éxito</span>
+        </h3>
+        <p className="text-gray-600 text-sm font-inter">Negociaciones cerradas exitosamente</p>
+      </div>
 
-          <div className="flex justify-center -mt-4">
-            <ReactApexChart options={options} series={series} type="radialBar" height={220} />
-          </div>
+      <div className="flex justify-center -mt-2">
+        <ReactApexChart options={options} series={series} type="radialBar" height={240} />
+      </div>
 
-          <p className="text-center text-gray-400 text-sm -mt-8 mb-6">
-            De los usuarios que regatean, <span className="text-orange-400 font-bold">68%</span> aceptan la contraoferta
-          </p>
+      <p className="text-center text-gray-700 text-sm font-inter -mt-6 mb-6">
+        De los usuarios que regatean,{' '}
+        <span className="text-[#B85C5C] font-playfair font-bold text-lg">87%</span>{' '}
+        aceptan la contraoferta
+      </p>
 
-          <div className="grid grid-cols-2 gap-3">
-            {stats.map((stat, index) => (
-              <div key={index} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
-                <stat.icon className={`${stat.color} size-5 mx-auto mb-1`} />
-                <p className="text-white font-bold text-lg">{stat.value}</p>
-                <p className="text-gray-500 text-xs">{stat.label}</p>
-              </div>
-            ))}
+      <div className="grid grid-cols-2 gap-3">
+        {stats.map((stat, index) => (
+          <div key={index} className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-center hover:bg-gray-100 transition-colors">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-2"
+              style={{ backgroundColor: `${stat.color}15` }}
+            >
+              <stat.icon size={16} style={{ color: stat.color }} />
+            </div>
+            <p className="text-black font-playfair font-bold text-xl">{stat.value}</p>
+            <p className="text-gray-600 text-xs font-inter">{stat.label}</p>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
-

@@ -8,18 +8,18 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 export default function ConversionComparison() {
   const options: ApexOptions = {
-    colors: ["#fb923c", "#6b7280"],
+    colors: ["#B85C5C", "#D1D5DB"],
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "Inter, sans-serif",
       type: "bar",
-      height: 280,
+      height: 320,
       toolbar: { show: false },
       background: "transparent",
     },
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "50%",
+        columnWidth: "60%",
         borderRadius: 8,
         borderRadiusApplication: "end",
       },
@@ -30,56 +30,68 @@ export default function ConversionComparison() {
       show: true,
       position: "top",
       horizontalAlign: "right",
-      labels: { colors: "#9ca3af" },
+      labels: { colors: "#6B7280" },
       markers: { radius: 4 },
+      fontFamily: "Inter",
     },
     xaxis: {
       categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
       axisBorder: { show: false },
       axisTicks: { show: false },
-      labels: { style: { colors: "#9ca3af" } },
+      labels: { style: { colors: "#9CA3AF", fontFamily: "Inter" } },
     },
     yaxis: {
       labels: {
-        style: { colors: "#9ca3af" },
+        style: { colors: "#9CA3AF", fontFamily: "Inter" },
         formatter: (val) => `${val}%`,
       },
     },
     grid: {
-      borderColor: "rgba(255,255,255,0.1)",
+      borderColor: "#E5E7EB",
       strokeDashArray: 4,
     },
     tooltip: {
-      theme: "dark",
+      theme: "light",
       y: { formatter: (val) => `${val}%` },
     },
     fill: { opacity: 1 },
   };
 
   const series = [
-    { name: "Con Agente", data: [8.2, 9.1, 10.5, 11.2, 11.8, 12.4] },
+    { name: "Con NegocIA", data: [8.2, 9.1, 10.5, 11.2, 11.8, 12.4] },
     { name: "Sin Agente", data: [2.8, 2.9, 3.0, 3.1, 3.0, 3.1] },
   ];
 
   return (
-    <div className="relative group h-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-gray-500/20 rounded-[2rem] blur-xl opacity-50" />
-      <div className="relative h-full rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl p-6">
-        <div className="absolute top-3 left-3 right-3 h-16 bg-gradient-to-b from-white/10 to-transparent rounded-t-[1.5rem]" />
-        <div className="relative">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h3 className="text-lg font-bold text-white">Conversión: Agente vs Sin Agente</h3>
-              <p className="text-gray-400 text-sm mt-1">Comparativa de tasa de conversión mensual</p>
-            </div>
-            <div className="flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
-              <span className="text-green-400 text-sm font-medium">+300% más</span>
-            </div>
-          </div>
-          <ReactApexChart options={options} series={series} type="bar" height={280} />
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all">
+      <div className="mb-6">
+        <h3 className="text-2xl font-playfair font-bold text-black mb-1">
+          Impacto en{' '}
+          <span className="font-italiana italic text-[#B85C5C]">Conversión</span>
+        </h3>
+        <p className="text-gray-600 text-sm font-inter">
+          Comparación de conversión con y sin agente de negociación
+        </p>
+      </div>
+
+      <ReactApexChart options={options} series={series} type="bar" height={320} />
+
+      <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-200">
+        <div className="text-center">
+          <p className="text-4xl font-playfair font-black text-[#B85C5C] mb-1">12.4%</p>
+          <p className="text-gray-600 text-sm font-inter">Con NegocIA</p>
         </div>
+        <div className="text-center">
+          <p className="text-4xl font-playfair font-black text-gray-400 mb-1">3.1%</p>
+          <p className="text-gray-600 text-sm font-inter">Sin Agente</p>
+        </div>
+      </div>
+
+      <div className="mt-4 bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+        <p className="text-green-700 font-inter font-medium">
+          <span className="text-2xl font-playfair font-bold">+300%</span> de mejora en conversión
+        </p>
       </div>
     </div>
   );
 }
-

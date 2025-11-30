@@ -1,11 +1,10 @@
 "use client";
-import { ThemeToggleButton } from "@/components/common/ThemeToggleButton";
 import NotificationDropdown from "@/components/header/NotificationDropdown";
 import UserDropdown from "@/components/header/UserDropdown";
 import { useSidebar } from "@/context/SidebarContext";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState ,useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
@@ -41,11 +40,11 @@ const AppHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 flex w-full bg-gray-950/80 backdrop-blur-xl border-white/10 z-99999 lg:border-b">
+    <header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 lg:border-b shadow-sm">
       <div className="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
-        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-white/10 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
+        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
           <button
-            className="items-center justify-center w-10 h-10 text-gray-400 border-white/10 rounded-lg z-99999 lg:flex hover:text-white lg:h-11 lg:w-11 lg:border"
+            className="items-center justify-center w-10 h-10 text-gray-600 border-gray-200 rounded-lg z-99999 lg:flex hover:text-black hover:bg-gray-100 lg:h-11 lg:w-11 lg:border transition-all"
             onClick={handleToggle}
             aria-label="Toggle Sidebar"
           >
@@ -80,29 +79,17 @@ const AppHeader: React.FC = () => {
                 />
               </svg>
             )}
-            {/* Cross Icon */}
           </button>
 
           <Link href="/" className="lg:hidden">
-            <Image
-              width={154}
-              height={32}
-              className="dark:hidden"
-              src="./images/logo/logo.svg"
-              alt="Logo"
-            />
-            <Image
-              width={154}
-              height={32}
-              className="hidden dark:block"
-              src="./images/logo/logo-dark.svg"
-              alt="Logo"
-            />
+            <span className="text-xl font-playfair font-bold text-black">
+              NegocIA<span className="text-[#B85C5C]">!</span>
+            </span>
           </Link>
 
           <button
             onClick={toggleApplicationMenu}
-            className="flex items-center justify-center w-10 h-10 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 lg:hidden"
+            className="flex items-center justify-center w-10 h-10 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 lg:hidden transition-all"
           >
             <svg
               width="24"
@@ -144,10 +131,10 @@ const AppHeader: React.FC = () => {
                   ref={inputRef}
                   type="text"
                   placeholder="Search or type command..."
-                  className="h-11 w-full rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl py-2.5 pl-12 pr-14 text-sm text-white placeholder:text-gray-500 focus:border-orange-400/50 focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 xl:w-[430px] transition-all"
+                  className="h-11 w-full rounded-xl border border-gray-200 bg-white py-2.5 pl-12 pr-14 text-sm text-black placeholder:text-gray-400 focus:border-[#B85C5C] focus:outline-hidden focus:ring-2 focus:ring-[#B85C5C]/20 xl:w-[430px] transition-all font-inter"
                 />
 
-                <button className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center gap-0.5 rounded-lg border border-white/10 bg-white/5 px-[7px] py-[4.5px] text-xs -tracking-[0.2px] text-gray-400">
+                <button className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 px-[7px] py-[4.5px] text-xs -tracking-[0.2px] text-gray-600 font-inter">
                   <span> ⌘ </span>
                   <span> K </span>
                 </button>
@@ -160,17 +147,8 @@ const AppHeader: React.FC = () => {
             isApplicationMenuOpen ? "flex" : "hidden"
           } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
         >
-          <div className="flex items-center gap-2 2xsm:gap-3">
-            {/* <!-- Dark Mode Toggler --> */}
-            <ThemeToggleButton />
-            {/* <!-- Dark Mode Toggler --> */}
-
-           <NotificationDropdown /> 
-            {/* <!-- Notification Menu Area --> */}
-          </div>
           {/* <!-- User Area --> */}
-          <UserDropdown /> 
-    
+          <UserDropdown />
         </div>
       </div>
     </header>
