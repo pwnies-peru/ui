@@ -2,14 +2,15 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, delay } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const toastMessages = [
-  { greeting: '¡Hola!', message: 'Veo que llevas rato mirando este producto. ¿Te ayudo? 👀' },
-  { greeting: '¡Hey!', message: '¿Y si te consigo un descuentito? Dame chance de ayudarte 😉' },
-  { greeting: '¡Listo!', message: 'Te armé una oferta especial. ¿Le echamos un vistazo? ✨' },
+  { greeting: 'Analizando...', message: 'Detecto alto interés. ¿Y si ajustamos el precio para que te lo lleves ya? 🤖' },
+  { greeting: 'Oportunidad', message: 'Mis algoritmos dicen que podemos negociar. Tírame una oferta, no muerdo. 😉💸' },
+  { greeting: 'Calculando...', message: 'Tengo margen para un descuento especial. ¿Hacemos trato ahora mismo? 🤝✨' },
 ];
 
 // Productos mock de ropa y zapatos
@@ -99,7 +100,7 @@ export default function Home() {
     // Ciclo de mensajes cada 8 segundos
     const interval = setInterval(() => {
       const nextIndex = (currentMessageIndex + 1) % toastMessages.length;
-      
+
       // Si completamos un ciclo, minimizar
       if (nextIndex === 0) {
         setShowToast(false);
@@ -198,11 +199,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center"
             >
               <Link
-                href="/dashboard"
-                className="bg-[#E8DD6C] text-black px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:bg-[#D4C854] transition-all inline-flex items-center gap-3 shadow-md hover:shadow-lg"
+                href="/login"
+                className="bg-[#E8DD6C] text-black px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:bg-[#D4C854] transition-all inline-flex items-center justify-center gap-3 shadow-md hover:shadow-lg min-w-[200px] flex-1"
               >
                 Comenzar gratis
                 <div className="bg-black text-white rounded-full w-9 h-9 flex items-center justify-center">
@@ -210,8 +211,8 @@ export default function Home() {
                 </div>
               </Link>
               <Link
-                href="/dashboard"
-                className="text-black border-2 border-gray-300 px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:border-gray-400 transition-all"
+                href="/login"
+                className="text-black border-2 border-gray-300 px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:border-gray-400 transition-all inline-flex items-center justify-center min-w-[200px] flex-1"
               >
                 Ver demo
               </Link>
@@ -220,7 +221,7 @@ export default function Home() {
 
           {/* Right Column - Toast Demo Container */}
           <div className="flex-1 w-full max-w-xl lg:max-w-2xl relative">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -279,10 +280,10 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-3 mb-20 relative">
                 {/* Blur overlay */}
                 <div className="absolute inset-0 backdrop-blur-[2px] z-[1] pointer-events-none rounded-xl" />
-                
+
                 {mockProducts.map((product, i) => (
-                  <motion.div 
-                    key={i} 
+                  <motion.div
+                    key={i}
                     className="bg-white/90 rounded-xl p-2.5 shadow-sm cursor-pointer relative"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 0.7 }}
@@ -305,43 +306,57 @@ export default function Home() {
                     initial={{ opacity: 0, x: 50, y: 20, scale: 0.9 }}
                     animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
                     exit={{ opacity: 0, x: 30, scale: 0.9 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 350, 
-                      damping: 28 
+                    transition={{
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 28
                     }}
                     className="absolute bottom-6 right-6 left-auto w-[75%] z-10"
                   >
-                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 flex items-start gap-4">
-                      {/* Logo Avatar - N de negocIA */}
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#B85C5C] to-[#8B4545] flex items-center justify-center flex-shrink-0 shadow-lg">
-                        <span className="font-playfair font-bold text-white text-xl">N</span>
+                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 flex items-start gap-4 relative overflow-hidden">
+                      {/* Fleeting Gradient Animation */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5, x: '100%', y: '100%' }}
+                        animate={{ opacity: [0, 0.5, 0], scale: 2, x: '-20%', y: '-20%' }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="absolute inset-0 bg-gradient-to-tl from-[#B85C5C]/20 via-[#E8DD6C]/20 to-transparent pointer-events-none z-0"
+                      />
+
+                      {/* Logo Avatar - mr.jpeg */}
+                      <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 shadow-lg border-2 border-white z-10 relative">
+                        <Image
+                          src="/images/logo/mr.jpeg"
+                          alt="NegocIA Avatar"
+                          width={48}
+                          height={48}
+                          className="object-cover"
+                        />
                       </div>
-                      
+
                       {/* Content - Progressive typing */}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 z-10 relative">
                         {/* Greeting with typing effect */}
-                        <motion.p 
+                        <motion.p
                           className="font-playfair font-bold text-[#B85C5C] text-base mb-1"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.2 }}
                         >
-                          <TypewriterText 
+                          <TypewriterText
                             key={`greeting-${messageKey}`}
-                            text={currentToast.greeting} 
-                            delay={200} 
-                            speed={60} 
+                            text={currentToast.greeting}
+                            delay={200}
+                            speed={60}
                           />
                         </motion.p>
-                        
+
                         {/* Message with cascading typing effect */}
                         <p className="text-gray-700 text-sm font-inter leading-relaxed">
-                          <TypewriterText 
+                          <TypewriterText
                             key={`message-${messageKey}`}
-                            text={currentToast.message} 
-                            delay={600} 
-                            speed={25} 
+                            text={currentToast.message}
+                            delay={600}
+                            speed={25}
                           />
                         </p>
                       </div>
@@ -357,46 +372,46 @@ export default function Home() {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 400, 
-                      damping: 25 
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 25
                     }}
                     onClick={startMessageCycle}
                     className="absolute bottom-6 right-6 z-10 group"
                   >
-                    <motion.div 
+                    <motion.div
                       className="w-14 h-14 rounded-full bg-gradient-to-br from-[#B85C5C] to-[#8B4545] flex items-center justify-center shadow-xl cursor-pointer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      animate={{ 
+                      animate={{
                         boxShadow: [
                           '0 10px 30px -10px rgba(184, 92, 92, 0.4)',
                           '0 10px 40px -10px rgba(184, 92, 92, 0.6)',
                           '0 10px 30px -10px rgba(184, 92, 92, 0.4)'
                         ]
                       }}
-                      transition={{ 
+                      transition={{
                         boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                       }}
                     >
                       <span className="font-playfair font-bold text-white text-2xl">N</span>
                     </motion.div>
-                    
+
                     {/* Pulse ring */}
                     <motion.div
                       className="absolute inset-0 rounded-full border-2 border-[#B85C5C]"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.4, 1.4],
                         opacity: [0.6, 0, 0]
                       }}
-                      transition={{ 
-                        duration: 2, 
+                      transition={{
+                        duration: 2,
                         repeat: Infinity,
                         ease: "easeOut"
                       }}
                     />
-                    
+
                     {/* Tooltip on hover */}
                     <motion.div
                       initial={{ opacity: 0, x: 10 }}
@@ -409,13 +424,13 @@ export default function Home() {
                   </motion.button>
                 )}
               </AnimatePresence>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </motion.div >
+          </div >
+        </div >
+      </section >
 
       {/* Features Section */}
-      <section id="features" className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
+      < section id="features" className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24" >
         <div className="grid md:grid-cols-3 gap-8 md:gap-10">
           {[
             {
@@ -452,10 +467,10 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section >
 
       {/* How it Works */}
-      <section id="how-it-works" className="bg-white py-16 md:py-24">
+      < section id="how-it-works" className="bg-white py-16 md:py-24" >
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-black text-center mb-12">
             Así funciona
@@ -488,10 +503,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Stats */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24">
+      < section className="max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24" >
         <div className="grid md:grid-cols-4 gap-8 text-center">
           {[
             { value: '+43%', label: 'Conversión asistida' },
@@ -515,15 +530,15 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section >
 
       {/* Integration CTA */}
-      <section className="bg-white py-16 md:py-24">
+      < section className="bg-white py-16 md:py-24" >
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-3xl font-playfair font-bold text-black mb-6">
             Una línea de código y listo
           </h2>
-          
+
           <div className="bg-gray-900 rounded-2xl p-5 font-mono text-sm text-green-400 mb-8 text-left overflow-x-auto">
             <span className="text-pink-400">{'<script'}</span> <span className="text-yellow-300">src</span>=<span className="text-green-300">"https://cdn.negocia.ai/widget.js"</span><span className="text-pink-400">{'/>'}</span>
           </div>
@@ -532,10 +547,10 @@ export default function Home() {
             Dashboard incluido con métricas de conversión, carritos recuperados e insights de compra.
           </p>
         </div>
-      </section>
+      </section >
 
       {/* CTA Final */}
-      <section className="bg-[#F5F5F0] py-16 md:py-24">
+      < section className="bg-[#F5F5F0] py-16 md:py-24" >
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-3xl font-playfair font-bold text-black mb-4">
             Vender online nunca fue{' '}
@@ -553,10 +568,10 @@ export default function Home() {
             <ArrowRight size={18} />
           </Link>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-12">
+      < footer className="bg-white border-t border-gray-200 py-12" >
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <span className="text-2xl md:text-3xl font-playfair font-bold text-black">
@@ -567,7 +582,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer>
-    </div>
+      </footer >
+    </div >
   );
 }
