@@ -2,10 +2,50 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+const toastMessages = [
+  { name: 'ALEJANDRA', message: 'I have recommendations to help continue your purchase', avatar: '👩‍💼' },
+  { name: 'CARLOS', message: '¡Hola! Tengo una oferta especial para ti 🎉', avatar: '👨‍💻' },
+  { name: 'MARÍA', message: 'Tu pedido está listo para procesar ✨', avatar: '👩‍🦰' },
+];
 
 export default function Home() {
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [showSplash, setShowSplash] = useState(false);
+
+  useEffect(() => {
+    // Mostrar primer toast después de 1 segundo
+    const initialTimer = setTimeout(() => {
+      setShowSplash(true);
+      setTimeout(() => setShowToast(true), 200);
+    }, 1000);
+
+    return () => clearTimeout(initialTimer);
+  }, []);
+
+  useEffect(() => {
+    // Ciclo de mensajes cada 15 segundos
+    const interval = setInterval(() => {
+      setShowToast(false);
+      
+      setTimeout(() => {
+        setCurrentMessageIndex((prev) => (prev + 1) % toastMessages.length);
+        if (currentMessageIndex === 0) {
+          setShowSplash(true);
+        }
+        setTimeout(() => setShowToast(true), 200);
+      }, 500);
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [currentMessageIndex]);
+
+  const currentToast = toastMessages[currentMessageIndex];
+
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
       {/* Top Black Bar - Anuncio */}
@@ -50,83 +90,200 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 md:px-12 pt-20 md:pt-32 pb-16 md:pb-24 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-5 py-2 mb-8 shadow-sm"
-        >
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-inter font-medium text-gray-700">+1,247 vendedores usando NegocIA hoy</span>
-        </motion.div>
+      <section className="max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-16 md:pb-24">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Left Column - Text Content */}
+          <div className="flex-1 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-5 py-2 mb-8 shadow-sm"
+            >
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-inter font-medium text-gray-700">+1,247 vendedores usando NegocIA hoy</span>
+            </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-black mb-8 leading-tight"
-        >
-          Tus clientes prefieren comprar con atención humana,{' '}
-          <br className="hidden md:block" />
-          pero{' '}
-          <span className="font-italiana text-[#B85C5C] italic">
-            responderles toma demasiado tiempo
-          </span>{' '}
-          para crecer
-        </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-3xl md:text-5xl lg:text-6xl font-playfair font-bold text-black mb-6 leading-tight"
+            >
+              Tus clientes prefieren comprar con atención humana,{' '}
+              <span className="font-italiana text-[#B85C5C] italic">
+                pero responderles toma demasiado tiempo
+              </span>{' '}
+              para crecer
+            </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-12 font-inter leading-relaxed"
-        >
-          NegocIA negocia, asesora y cierra ventas por ti. Como un vendedor real, pero disponible 24/7 sin descanso.
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-lg md:text-xl text-gray-700 mb-10 font-inter leading-relaxed"
+            >
+              NegocIA negocia, asesora y cierra ventas por ti. Como un vendedor real, pero disponible 24/7 sin descanso.
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
-        >
-          <Link
-            href="/dashboard"
-            className="bg-[#E8DD6C] text-black px-10 md:px-12 py-4 md:py-5 rounded-full font-inter font-semibold text-base md:text-lg hover:bg-[#D4C854] transition-all inline-flex items-center gap-3 shadow-md hover:shadow-lg"
-          >
-            Comenzar Gratis
-            <div className="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center">
-              <ArrowRight size={20} />
-            </div>
-          </Link>
-          <Link
-            href="/dashboard"
-            className="text-black border-2 border-gray-300 px-10 md:px-12 py-4 md:py-5 rounded-full font-inter font-semibold text-base md:text-lg hover:border-gray-400 transition-all inline-flex items-center gap-2"
-          >
-            Ver Demo
-          </Link>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-8"
+            >
+              <Link
+                href="/dashboard"
+                className="bg-[#E8DD6C] text-black px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:bg-[#D4C854] transition-all inline-flex items-center gap-3 shadow-md hover:shadow-lg"
+              >
+                Comenzar Gratis
+                <div className="bg-black text-white rounded-full w-9 h-9 flex items-center justify-center">
+                  <ArrowRight size={18} />
+                </div>
+              </Link>
+              <Link
+                href="/dashboard"
+                className="text-black border-2 border-gray-300 px-8 md:px-10 py-4 rounded-full font-inter font-semibold text-base hover:border-gray-400 transition-all"
+              >
+                Ver Demo
+              </Link>
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center gap-6 text-sm text-gray-600 font-inter"
-        >
-          <span className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-            </svg>
-            Sin tarjeta de crédito
-          </span>
-          <span className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-            </svg>
-            Setup en 5 minutos
-          </span>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-600 font-inter"
+            >
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                Sin tarjeta de crédito
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                Setup en 5 minutos
+              </span>
+            </motion.div>
+          </div>
+
+          {/* Right Column - Toast Demo Container */}
+          <div className="flex-1 w-full max-w-md lg:max-w-lg relative">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-6 md:p-8 min-h-[400px] md:min-h-[480px] overflow-hidden border border-gray-200 shadow-xl"
+            >
+              {/* Splash Animation Background */}
+              <AnimatePresence>
+                {showSplash && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0.8 }}
+                    animate={{ scale: 4, opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    onAnimationComplete={() => setShowSplash(false)}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-[#E8DD6C]/40 z-0"
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Mock Product Cards Background */}
+              <div className="grid grid-cols-3 gap-3 mb-6 opacity-60">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white rounded-xl p-3 shadow-sm">
+                    <div className="w-full aspect-square bg-gray-200 rounded-lg mb-2"></div>
+                    <div className="h-2 bg-gray-200 rounded w-3/4 mb-1"></div>
+                    <div className="h-2 bg-gray-300 rounded w-1/2"></div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Toast Notification */}
+              <AnimatePresence mode="wait">
+                {showToast && (
+                  <motion.div
+                    key={currentMessageIndex}
+                    initial={{ opacity: 0, x: 100, y: 20 }}
+                    animate={{ opacity: 1, x: 0, y: 0 }}
+                    exit={{ opacity: 0, x: -50, y: -10 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 30 
+                    }}
+                    className="absolute bottom-6 left-6 right-6 z-10"
+                  >
+                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 flex items-start gap-4">
+                      {/* Avatar */}
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-pink-500 flex items-center justify-center text-white text-xl flex-shrink-0 shadow-lg">
+                        {currentToast.avatar}
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-inter font-bold text-pink-500 text-sm uppercase tracking-wide">
+                            {currentToast.name}
+                          </span>
+                          {/* Typing indicator */}
+                          <motion.div 
+                            className="flex gap-0.5"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                          >
+                            <motion.span
+                              className="w-1.5 h-1.5 bg-pink-400 rounded-full"
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                            />
+                            <motion.span
+                              className="w-1.5 h-1.5 bg-pink-400 rounded-full"
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                            />
+                            <motion.span
+                              className="w-1.5 h-1.5 bg-pink-400 rounded-full"
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                            />
+                          </motion.div>
+                        </div>
+                        <p className="text-gray-700 text-sm font-inter leading-relaxed">
+                          {currentToast.message}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Decorative Elements */}
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+
+              {/* Bottom action bar mock */}
+              <div className="absolute bottom-24 left-6 right-6 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center">
+                    <span className="text-pink-500 text-sm">+</span>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="px-4 py-2 bg-white rounded-full text-xs font-inter text-gray-500 shadow-sm">AÑADIR</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Benefits Section */}
